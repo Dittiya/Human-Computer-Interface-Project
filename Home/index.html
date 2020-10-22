@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <title>Xtream Chaser</title>
+  </head>
+  <body>
+    <div class="logo-wrapper">
+      <a href="index.html">
+        <img src="../Assets/newLogo.png" class="icon" />
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <div class="left-wrapper">
+          <li id="dropdown">
+            <div>
+              <a href="#" id="game">GAME</a>
+              <div class="sub-menu">
+                <ul>
+                  <li><a href="../Lore/lore.html" id="story">STORY</a></li>
+                  <li><a href="../Characters/characters.html">CHARACTER</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li><a href="../Gallery/gallery.html">GALLERY</a></li>
+        </div>
+        <div class="right-wrapper">
+          <li><a href="../Pre-Register/preregister.html">PRE-REGISTER</a></li>
+        </div>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="slider-container">
+        <img
+          src="../Assets/img/slider-arrow-left.png"
+          class="prev"
+          alt="Prev"
+        />
+        <div class="slider-content">
+          <img src="../Assets/img/slideshow1.jpg" class="active first fade" />
+          <img src="../Assets/img/slideshow2.jpg" class="last fade" />
+        </div>
+        <img
+          src="../Assets/img/slider-arrow-right.png"
+          class="next"
+          alt="Next"
+        />
+      </div>
+      <div class="content">
+        <p>
+          XTREAM CHASER IS A COMPETITIVE FIGHTING GAME WHERE YOU HAVE TO FIGHT
+          IN ARENAS FULL OF OBSTACLES TO WIN.
+        </p>
+        <p>
+          PLAY INTENSE LOCAL MATCHES WITH FRIENDS AND FOES, CHALLENGE YOURSELF
+          IN THE SINGLE PLAYER MODE OR BATTLE IT OUT ONLINE.
+        </p>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <!-- <div class="footer-container">
+      <img src="../Assets/img/ps4.png" class="steam-ps" />
+      <img src="../Assets/img/steam.png" class="steam-ps" />
+      <img src="../Assets/img/xboxone.png" /> -->
+      <div class="footer-container">
+        <img src="../Assets/img/ps4.png" class="steam-ps" />
+        <img src="../Assets/img/steam.png" class="steam-ps" />
+        <img src="../Assets/img/xboxone.png" class="steam-ps"/>
+    </div>
+  </footer>
+</html>
+
+<script>
+  function next() {
+    var currentImage = $(".active");
+    var nextImage = currentImage.next();
+    if (nextImage.length) {
+      currentImage.removeClass("active").css("z-index", -10);
+      nextImage.addClass("active").css("z-index", 10);
+    } else {
+      currentImage.removeClass("active").css("z-index", -10);
+      currentImage = $(".first");
+      currentImage.addClass("active").css("z-index", 10);
+    }
+  }
+
+  function prev() {
+    var currentImage = $(".active");
+    var previousImage = currentImage.prev();
+    if (previousImage.length) {
+      currentImage.removeClass("active").css("z-index", -10);
+      previousImage.addClass("active").css("z-index", 10);
+    } else {
+      currentImage.removeClass("active").css("z-index", -10);
+      currentImage = $(".last");
+      currentImage.addClass("active").css("z-index", 10);
+    }
+  }
+
+  $(document).ready(function () {
+    $(".next").on("click", next);
+    $(".prev").on("click", prev);
+  });
+</script>

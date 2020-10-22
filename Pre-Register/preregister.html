@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Xtream Chaser</title>
+  </head>
+  <body>
+    <div class="logo-wrapper">
+      <a href="../Home/index.html">
+        <img src="../Assets/newLogo.png" class="icon" />
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <div class="left-wrapper">
+          <li id="dropdown">
+            <div>
+              <a href="../Home/index.html" id="game">GAME</a>
+              <div class="sub-menu">
+                <ul>
+                  <li><a href="../Lore/lore.html" id="story">STORY</a></li>
+                  <li><a href="../Characters/characters.html">CHARACTER</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li><a href="../Gallery/gallery.html">GALLERY</a></li>
+        </div>
+        <div class="right-wrapper">
+          <li><a href="../Pre-Register/preregister.html">PRE-REGISTER</a></li>
+        </div>
+      </ul>
+    </nav>
+    <div class="content">
+      <div class="sub-title">
+        PRE-REGISTER
+        <div class="sub-description">
+          Please fill the form below
+        </div>
+      </div>
+      <form action="" method="post" class="form-container" id="fvPreRegister">
+        <div class="form-group">
+          <label for="email">Email<span class="red">*</span></label>
+          <input type="text" class="form-control" name="" id="email" />
+        </div>
+        <div class="form-group">
+          <label for="username">Username<span class="red">*</span></label>
+          <input type="text" class="form-control" name="" id="username" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password<span class="red">*</span></label>
+          <input type="password" class="form-control" name="" id="password" />
+        </div>
+        <div class="form-group">
+          <label>Gender<span class="red">*</span></label>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" name="gender" id="gender_male" value="Male" />
+              <label for="gender_male">Male</label>
+            </div>
+            <div class="radio-item">
+              <input
+                type="radio"
+                name="gender"
+                id="gender_female"
+                value="Female"
+              />
+              <label for="gender_female">Female</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth<span class="red">*</span></label>
+          <input type="date" name="" id="dob" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label>Nation<span class="red">*</span></label>
+          <select class="form-control" id="nation">
+            <option value="" selected>-- Select Nation --</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="US">United States</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input type="checkbox" name="" id="agreement" />
+            <label for="agreement"
+              >I have agreed to the
+              <a href="#terms">terms and conditions</a></label
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="button" class="btn" value="Submit" id="btnSubmit" />
+        </div>
+      </form>
+      <div class="extra-space"></div>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  function isAlphaNum(char) {
+    if (
+      (char >= "A" && char <= "Z") ||
+      (char >= "a" && char <= "z") ||
+      (char >= "0" && char <= "9")
+    )
+      return true;
+    return false;
+  }
+  function isValidEmailPrefix(prefix) {
+    //check that prefix must only contain alphanumeric and some specials (underscore,period,dash)
+    var special = ["_", ".", "-"];
+    var validChar = false;
+    for (var i = 0; i < prefix.length; i++) {
+      if (!isAlphaNum(prefix[i])) {
+        var validSpecial = false;
+        for (var j = 0; j < special.length; j++) {
+          if (prefix[i] == special[j]) {
+            validSpecial = true;
+            break;
+          }
+        }
+        if (!validSpecial) return false;
+      }
+    }
+    //special cannot be at the start or at the end of prefix
+    for (var i = 0; i < special.length; i++) {
+      if (prefix.startsWith(special[i]) || prefix.endsWith(special[i]))
+        return false;
+    }
+    //special must be between alphanumeric
+    for (var i = 1; i < prefix.length - 1; i++) {
+      if (!isAlphaNum(prefix[i]))
+        if (!isAlphaNum(prefix[i - 1]) || !isAlphaNum(prefix[i + 1]))
+          return false;
+    }
+    return true;
+  }
+  function isValidEmailDomain(domain) {
+    //check that domain must consist of alphanumeric, and some specials(period,dash)
+    var special = [".", "-"];
+    var validChar = false;
+    for (var i = 0; i < domain.length; i++) {
+      if (!isAlphaNum(domain[i])) {
+        var validSpecial = false;
+        for (var j = 0; j < special.length; j++) {
+          if (domain[i] == special[j]) {
+            validSpecial = true;
+            break;
+          }
+        }
+        if (!validSpecial) return false;
+      }
+    }
+    //domain must consist of at least one period
+    var dotAt = domain.indexOf(".");
+    if (dotAt < 0) return false;
+    //special cannot be at the start or at the end of prefix
+    for (var i = 0; i < special.length; i++) {
+      if (domain.startsWith(special[i]) || domain.endsWith(special[i]))
+        return false;
+    }
+    //period must be between alphanumeric
+    for (var i = 1; i < domain.length - 1; i++) {
+      if (domain[i] == ".")
+        if (!isAlphaNum(domain[i - 1]) || !isAlphaNum(domain[i + 1]))
+          return false;
+    }
+    return true;
+  }
+  function emailPatternIsValid(text) {
+    //email must only have one '@'
+    var splittedByAt = text.split("@");
+    if (splittedByAt.length != 2) return false;
+    //@ cannot be at the start / end of the email
+    var locAt = text.indexOf("@");
+    if (locAt <= 0 || locAt >= text.length - 1) return false;
+    //get prefix/domain of email by @
+    var prefix = splittedByAt[0];
+    var domain = splittedByAt[1];
+    if (!isValidEmailPrefix(prefix)) return false;
+    if (!isValidEmailDomain(domain)) return false;
+    return true;
+  }
+  function passwordIsComplex(password) {
+    var containsLower = false;
+    var containsUpper = false;
+    var containsSpecialChar = false;
+    var containsNumber = false;
+    for (var i = 0; i < password.length; i++) {
+      if (password[i] >= "a" && password[i] <= "z") containsLower = true;
+      if (password[i] >= "A" && password[i] <= "Z") containsUpper = true;
+      if (password[i] >= "0" && password[i] <= "9") containsNumber = true;
+      if (!isAlphaNum[i]) containsSpecialChar = true;
+    }
+    return (
+      containsUpper && containsLower && containsSpecialChar && containsNumber
+    );
+  }
+  var fvPreRegister = document.getElementById("fvPreRegister");
+  var btnSubmit = document.getElementById("btnSubmit");
+  btnSubmit.addEventListener("click", function () {
+    var email = document.getElementById("email").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var dob = document.getElementById("dob").value;
+    var nation = document.getElementById("nation").value;
+    var agree = document.getElementById("agreement").checked;
+    if (email.trim() == "") {
+      alert("Email field must be filled");
+      return;
+    }
+    if (!emailPatternIsValid(email)) {
+      alert("Email pattern must be valid (ex: someone@mail.com)");
+      return;
+    }
+    if (username.trim() == "") {
+      alert("Username field must be filled");
+      return;
+    }
+    if (username.length < 3) {
+      alert("Username must have a minimum of 3 characters");
+      return;
+    }
+    if (username.indexOf(" ") >= 0) {
+      alert("Username cannot have any whitespace");
+      return;
+    }
+    if (password.trim() == "") {
+      alert("Password field must be filled");
+      return;
+    }
+    if (password.length < 8) {
+      alert("Password must have a minimum of 8 characters");
+      return;
+    }
+    if (!passwordIsComplex(password)) {
+      alert(
+        "Password must contain lowercase, uppercase, number, and special character (ex: @,#,!)"
+      );
+      return;
+    }
+    if (
+      !document.getElementById("gender_female").checked &&
+      !document.getElementById("gender_male").checked
+    ) {
+      alert("Gender must be chosen");
+      return;
+    }
+    if (dob.trim() == "") {
+      alert("Date of Birth field must be filled");
+      return;
+    }
+    if (nation.trim() == "") {
+      alert("Nation field must be chosen");
+      return;
+    }
+    if (!agree) {
+      alert("You must agree for the terms and conditions");
+      return;
+    }
+    alert("You have successfully registered!");
+    fvPreRegister.submit();
+  });
+</script>
