@@ -2,7 +2,7 @@
 Project for Human Computer Interaction using html and jquery
 
 Contribution:
-- Story page
+- Lore page
 - Character page
 - Logo design
 - Home page design
